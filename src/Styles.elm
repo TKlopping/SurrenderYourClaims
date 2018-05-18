@@ -43,6 +43,7 @@ tableTitleRowStyle =
   style
     [ ("height", "1.5em")
     , ("text-align", "center")
+    , ("font-weight","bold")
     ]
 
 tableTitleCellStyle =
