@@ -43,10 +43,7 @@ view m =
 
 claimTable : Html Msg
 claimTable = table
-  [Styles.tableStyle][tableTitleRow
-  ,(tableRow testRowData1)
-  ,(tableRow testRowData2)
-  ]
+  [Styles.tableStyle]([tableTitleRow] ++ List.map tableRow testRowData)
 
 tableTitleRow : Html Msg
 tableTitleRow = tr [Styles.tableTitleRowStyle][
@@ -63,8 +60,10 @@ type alias RowData =
    , distance : String
  }
 
-testRowData1 = RowData "17/05/2018" "Client 1" "130123" "86"
-testRowData2 = RowData "18/05/2018" "Client 1" "130223" "87"
+testRowData =
+  [ RowData "17/05/2018" "Client 1" "130123" "86"
+  , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 3" "130223" "127"]
 
 tableRow : RowData -> Html Msg
 tableRow d = tr [Styles.tableRowStyle][td[][text d.date], td[][text d.client],td[][text d.start],td[][text d.distance]]
