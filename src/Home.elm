@@ -1,4 +1,4 @@
-import Html exposing (Html, Attribute, program, text, div, h1, p)
+import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import String
@@ -22,7 +22,7 @@ main =
         }
 
 init : ( Model, Cmd Msg )
-init = ( {title = "Surrender your Claims", test = "This is a paragraph!"}, Cmd.none )
+init = ( Model "Surrender your Claims"  "This is a paragraph!" , Cmd.none )
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -38,5 +38,42 @@ view : Model -> Html Msg
 view m =
    div [Styles.packageStyle]
       [ h1 [ Styles.titleStyle] [text m.title]
-      , div [ Styles.mainContainerStyle ] [p [][text m.test]]
+      , div [ Styles.mainContainerStyle ] [claimTable]
       ]
+
+claimTable : Html Msg
+claimTable = table
+  [Styles.tableStyle][tableTitleRow
+  ,(tableRow testRowData1)
+  ,(tableRow testRowData2)
+  ]
+
+tableTitleRow : Html Msg
+tableTitleRow = tr [Styles.tableTitleRowStyle][
+ td[Styles.tableTitleCellStyle][text "Date"],
+ td[Styles.tableTitleCellStyle][text "Client"],
+ td[Styles.tableTitleCellStyle][text "Start km"],
+ td[Styles.tableTitleCellStyle][text "Distance"]
+ ]
+
+type alias RowData =
+   { date : String
+   , client : String
+   , start : String
+   , distance : String
+ }
+
+testRowData1 = RowData "17/05/2018" "Client 1" "130123" "86"
+testRowData2 = RowData "18/05/2018" "Client 1" "130223" "87"
+
+tableRow : RowData -> Html Msg
+tableRow d = tr [Styles.tableRowStyle][td[][text d.date], td[][text d.client],td[][text d.start],td[][text d.distance]]
+
+
+
+
+
+
+
+
+--
