@@ -50,3 +50,13 @@ tableTitleCellStyle =
   style
     [("border-bottom", "1pt solid " ++ almostBlack)
     ]
+
+tableInputStyle =
+  style
+    [("width", "95%")
+    ]
+
+medWidth =
+  style
+    [("width", "50px")
+    ]

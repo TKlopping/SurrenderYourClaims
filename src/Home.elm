@@ -43,14 +43,15 @@ view m =
 
 claimTable : Html Msg
 claimTable = table
-  [Styles.tableStyle]([tableTitleRow] ++ List.map tableRow testRowData)
+  [Styles.tableStyle]([tableTitleRow] ++ List.map tableRow testRowData ++ [addClaimRow])
 
 tableTitleRow : Html Msg
-tableTitleRow = tr [Styles.tableTitleRowStyle][
- td[Styles.tableTitleCellStyle][text "Date"],
- td[Styles.tableTitleCellStyle][text "Client"],
- td[Styles.tableTitleCellStyle][text "Start km"],
- td[Styles.tableTitleCellStyle][text "Distance"]
+tableTitleRow = tr [Styles.tableTitleRowStyle]
+ [td[Styles.tableTitleCellStyle][text "Date"]
+ ,td[Styles.tableTitleCellStyle][text "Client"]
+ ,td[Styles.tableTitleCellStyle][text "Start km"]
+ ,td[Styles.tableTitleCellStyle][text "Distance"]
+ ,td[Styles.tableTitleCellStyle][text ""]
  ]
 
 type alias RowData =
@@ -63,11 +64,29 @@ type alias RowData =
 testRowData =
   [ RowData "17/05/2018" "Client 1" "130123" "86"
   , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 1" "130223" "87"
+  , RowData "18/05/2018" "Client 1" "130223" "90"
   , RowData "18/05/2018" "Client 3" "130223" "127"]
 
 tableRow : RowData -> Html Msg
-tableRow d = tr [Styles.tableRowStyle][td[][text d.date], td[][text d.client],td[][text d.start],td[][text d.distance]]
+tableRow d = tr[Styles.tableRowStyle]
+  [td[][text d.date]
+  ,td[][text d.client]
+  ,td[][text d.start]
+  ,td[][text d.distance]
+  ,td[][button[Styles.medWidth][text "X"]]
+  ]
 
+addClaimRow = tr[]
+  [td[][input[Styles.tableInputStyle][]]
+  ,td[][input[Styles.tableInputStyle][]]
+  ,td[][input[Styles.tableInputStyle][]]
+  ,td[][input[Styles.tableInputStyle][]]
+  ,td[Styles.medWidth][button[Styles.medWidth][text "Add"]]
+  ]
 
 
 
